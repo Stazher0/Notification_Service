@@ -28,6 +28,7 @@ public class NotificationService {
         //выполняю маппинг
         Notification notification = toNotification(request);
 
+        //сохраняю уведомление в бд
         Notification saved = notificationRepo.save(notification);
 
         //в зависимости от типа notification вызываю должный producer
@@ -49,8 +50,13 @@ public class NotificationService {
         notification.setDestination(request.getDestination());
         notification.setTheme(request.getTheme());
         notification.setContent(request.getContent());
-        notification.setPriorityType(request.getPriorityType());
         notification.setNotificationType(request.getNotificationType());
+
+        if (request.getPriorityType() != null) {
+            notification.setPriorityType(request.getPriorityType());
+        }
+
+        log.info("priorityType from request: {}", request.getPriorityType());
 
         return notification;
     }

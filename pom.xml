@@ -52,6 +52,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<!--            SPRING VALIDATION-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>4.1.1</version>
+            <scope>compile</scope>
+        </dependency>
 <!--            POSTGRESQL DRIVER-->
         <dependency>
             <groupId>org.postgresql</groupId>
