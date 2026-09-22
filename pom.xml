@@ -66,6 +66,13 @@
             <version>42.7.13</version>
             <scope>runtime</scope>
         </dependency>
+<!--            MAIL SEND-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>4.1.1</version>
+            <scope>compile</scope>
+        </dependency>
 <!--        ACTUATOR FOR HEALTH CHECK-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

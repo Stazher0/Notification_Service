@@ -6,6 +6,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import zhulikov.project.notificationservice.dto.EmailNotificationDto;
 import zhulikov.project.notificationservice.enums.PriorityType;
+import zhulikov.project.notificationservice.service.EmailSender;
 import zhulikov.project.notificationservice.service.NotificationStatusService;
 
 import static zhulikov.project.notificationservice.config.RabbitNames.EMAIL_HIGH_QUEUE;
@@ -19,11 +20,13 @@ import static zhulikov.project.notificationservice.config.RabbitNames.EMAIL_LOW_
 public class EmailConsumer {
 
     private final NotificationStatusService notificationStatusService;
+    private final EmailSender  emailSender;
 
     private void processEmail(EmailNotificationDto dto, PriorityType priority) {
         Long notificationId = dto.getNotificationId();
         try {
             log.info("EMAIL {} priority received {}", priority, dto);
+            emailSender.send(dto);
             notificationStatusService.markAsSent(notificationId);
         }catch (Exception error){
             notificationStatusService.markAsFailed(notificationId,error);
